@@ -22,7 +22,7 @@ open class AppBaseRemoteRepository @Inject constructor() {
             if (response.isSuccessful) {
                 try {
                     val genericResponse = response.body()!! as AppApiResponse<*>
-                    if (genericResponse.status.not()) {
+                    if (genericResponse.status.contains("ok").not()) {
                         emit(
                             RemoteRequestStatus.OnFailedRequest(
                                 response.body()!! as T, genericResponse.message

@@ -2,7 +2,7 @@ package com.omaradev.newsapp.domain.model
 
 data class AppApiResponse<T>(
     val articles: T? = null,
-    var status: Boolean = false,
+    var status: String ,
     val totalResults: Int = 0,
 
     //ApiErrorModel
