@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">NewsApp</string>
-    <string name="main_label">News</string>
-    <string name="no_search_result">No Result</string>
+    <string name="main_label">الأخبار</string>
+    <string name="no_search_result">لا يوجد نتائج</string>
+    <string name="content">المحتوي</string>
+    <string name="view_article">فتح المقال</string>
 </resources>

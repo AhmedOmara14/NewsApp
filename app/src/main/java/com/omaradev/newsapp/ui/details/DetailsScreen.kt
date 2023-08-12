@@ -32,6 +32,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -108,7 +109,7 @@ fun DetailsScreen(navController: NavHostController, article: Article?) {
                     LabelText(label = it, modifier = Modifier)
                 }
                 Column {
-                    article?.convertDate(article?.publishedAt)?.let {
+                    article?.convertDate(article.publishedAt)?.let {
                         Text(
                             text = it,
                             style = TextStyle(
@@ -153,7 +154,7 @@ fun DetailsScreen(navController: NavHostController, article: Article?) {
                 )
             }
 
-            LabelText(label = "Content", modifier = Modifier)
+            LabelText(label = stringResource(R.string.content), modifier = Modifier)
 
             article?.content?.let {
                 val spanned = HtmlCompat.fromHtml(it, HtmlCompat.FROM_HTML_MODE_LEGACY)
@@ -189,7 +190,7 @@ fun DetailsScreen(navController: NavHostController, article: Article?) {
                     }
             ) {
                 Text(
-                    text = "View Article",
+                    text = stringResource(R.string.view_article),
                     color = Color.White,
                     style = TextStyle(
                         color = Color.White,
