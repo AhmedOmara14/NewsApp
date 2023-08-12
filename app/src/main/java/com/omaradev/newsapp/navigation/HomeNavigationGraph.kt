@@ -18,7 +18,7 @@ fun HomeNavigationGraph(navController: NavHostController) {
         composable(HomeNavigation.Details.screen) {
             val result =
                 navController.previousBackStackEntry?.savedStateHandle?.get<Article>("article")
-            DetailsScreen(article  = result)
+            DetailsScreen(navController,article  = result)
         }
     }
 }

@@ -23,7 +23,7 @@ class HomeViewModel @Inject constructor(private val repository: Repository) : Vi
     val page = mutableStateOf(1)
 
     val pagesize: Int = 10
-    private val apiKey: String = "885320cba4be43f785bd5f8c0c4c7217"
+    private val apiKey: String = "2036d9ba2bbd4f5c9a5890d73d487a6a"
     private val language = Locale.getDefault().language
 
     var listScrollPosition = 0
