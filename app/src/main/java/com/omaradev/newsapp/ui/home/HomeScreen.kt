@@ -24,6 +24,7 @@ import androidx.navigation.NavController
 import com.omaradev.newsapp.R
 import com.omaradev.newsapp.data.repository.RemoteRequestStatus
 import com.omaradev.newsapp.domain.model.news.Article
+import com.omaradev.newsapp.navigation.HomeNavigation
 import com.omaradev.newsapp.ui.home.component.ArticleItem
 import com.omaradev.newsapp.ui.home.component.ArticleShimmer
 import com.omaradev.newsapp.ui.home.component.LabelText
@@ -80,7 +81,7 @@ fun HomeScreen(
                 }
             }
         }
-        HandleStateOfShowingData(isLoadingNewsItems, viewModel, searchValue)
+        HandleStateOfShowingData(isLoadingNewsItems, viewModel, searchValue, navController)
     }
 }
 
@@ -95,14 +96,15 @@ fun getFormattedDate(): String {
 fun HandleStateOfShowingData(
     isLoadingNewsItems: Boolean,
     viewModel: HomeViewModel,
-    searchValue: String
+    searchValue: String,
+    navController: NavController
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         when {
             isLoadingNewsItems && viewModel.page.value == 1 -> ArticleShimmer()
             else -> {
                 if (viewModel.newsItemsList.isEmpty()) NoSearchResults()
-                else BindNewsData(viewModel, isLoadingNewsItems, searchValue)
+                else BindNewsData(viewModel, isLoadingNewsItems, searchValue, navController)
             }
         }
     }
@@ -129,12 +131,12 @@ private fun NoSearchResults() {
         )
     }
 }
-
 @Composable
 private fun BindNewsData(
     viewModel: HomeViewModel,
     isLoadingNewsItems: Boolean,
-    searchValue: String
+    searchValue: String,
+    navController: NavController
 ) {
     LazyColumn(
         modifier = Modifier
@@ -143,7 +145,6 @@ private fun BindNewsData(
     ) {
         List(viewModel.newsItemsList.size) { index ->
             viewModel.onChangeArticlesListScrollPosition(index)
-
             // Check if you are near the end of the list and not loading more items
             if ((index + 1) >= (viewModel.page.value * viewModel.pagesize) && isLoadingNewsItems.not()) {
                 viewModel.nextPage(searchValue)
@@ -151,7 +152,10 @@ private fun BindNewsData(
         }
 
         items(viewModel.newsItemsList.size) {
-            ArticleItem(viewModel.newsItemsList[it]) {}
+            ArticleItem(viewModel.newsItemsList[it]) { article ->
+                navController.currentBackStackEntry?.savedStateHandle?.set("article", article)
+                navController.navigate(HomeNavigation.Details.screen)
+            }
         }
     }
 }

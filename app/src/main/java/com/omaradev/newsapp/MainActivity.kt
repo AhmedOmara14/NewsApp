@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.omaradev.newsapp.navigation.HomeNavigation
+import com.omaradev.newsapp.navigation.HomeNavigationGraph
 import com.omaradev.newsapp.ui.home.HomeScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,9 +20,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
-            Scaffold {
-                HomeScreen(navController = navController)
-            }
+            HomeNavigationGraph(navController = navController)
         }
     }
 }

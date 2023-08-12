@@ -3,6 +3,7 @@ package com.omaradev.newsapp.ui.home.component
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -29,15 +30,17 @@ import com.omaradev.newsapp.domain.model.news.Article
 
 @SuppressLint("InvalidColorHexValue")
 @Composable
-fun ArticleItem(article: Article, onClickArticle: (article: Article) -> Unit) {
+fun ArticleItem(article: Article, onClickArticle: (serializableArticle: Article) -> Unit) {
     Card(
         elevation = 10.dp,
         modifier = Modifier
             .padding(start = 4.dp, end = 4.dp, bottom = 8.dp)
             .fillMaxWidth()
-            .height(220.dp)
+            .height(220.dp).clickable {
+                onClickArticle(article)
+            }
     ) {
-        Box {
+        Box{
             Image(
                 painter = rememberAsyncImagePainter(article.urlToImage),
                 contentDescription = "",
