@@ -22,9 +22,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.omaradev.newsapp.R
-import com.omaradev.newsapp.data.repository.RemoteRequestStatus
-import com.omaradev.newsapp.domain.model.news.Article
-import com.omaradev.newsapp.navigation.HomeNavigation
+import com.omaradev.domain.model.news.Article
+import com.omaradev.domain.repository.RemoteRequestStatus
+import com.omaradev.newsapp.ui.navigation.HomeNavigation
 import com.omaradev.newsapp.ui.home.component.ArticleItem
 import com.omaradev.newsapp.ui.home.component.ArticleShimmer
 import com.omaradev.newsapp.ui.home.component.LabelText

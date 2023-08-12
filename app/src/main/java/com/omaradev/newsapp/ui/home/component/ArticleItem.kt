@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.omaradev.newsapp.R
-import com.omaradev.newsapp.domain.model.news.Article
+import com.omaradev.domain.model.news.Article
 
 @SuppressLint("InvalidColorHexValue")
 @Composable

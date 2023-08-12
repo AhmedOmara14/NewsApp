@@ -3,10 +3,10 @@ package com.omaradev.newsapp.ui.home
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.omaradev.newsapp.data.repository.RemoteRequestStatus
-import com.omaradev.newsapp.domain.model.AppApiResponse
-import com.omaradev.newsapp.domain.model.news.Article
-import com.omaradev.newsapp.domain.repository.Repository
+import com.omaradev.domain.repository.RemoteRequestStatus
+import com.omaradev.domain.model.AppApiResponse
+import com.omaradev.domain.model.news.Article
+import com.omaradev.domain.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
