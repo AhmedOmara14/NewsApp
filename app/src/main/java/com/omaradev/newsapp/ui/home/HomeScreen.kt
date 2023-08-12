@@ -48,6 +48,8 @@ fun HomeScreen(
 
     val newsItemsState = viewModel.articlesItems.collectAsState()
 
+    viewModel.getSavedArticles()
+
     when (val newsItems = newsItemsState.value) {
         is RemoteRequestStatus.ToggleLoading -> isLoadingNewsItems = newsItems.showLoading
 
@@ -103,8 +105,10 @@ fun HandleStateOfShowingData(
         when {
             isLoadingNewsItems && viewModel.page.value == 1 -> ArticleShimmer()
             else -> {
-                if (viewModel.newsItemsList.isEmpty()) NoSearchResults()
-                else BindNewsData(viewModel, isLoadingNewsItems, searchValue, navController)
+                if (viewModel.newsItemsList.isEmpty()) {
+                    if (viewModel.savedNewsItemsList.value.isEmpty()) NoSearchResults()
+                    else BindSavedNewsData(viewModel = viewModel, navController = navController)
+                } else BindNewsData(viewModel, isLoadingNewsItems, searchValue, navController)
             }
         }
     }
@@ -131,6 +135,7 @@ private fun NoSearchResults() {
         )
     }
 }
+
 @Composable
 private fun BindNewsData(
     viewModel: HomeViewModel,
@@ -143,6 +148,8 @@ private fun BindNewsData(
             .padding(top = 8.dp)
             .fillMaxSize()
     ) {
+        viewModel.removeAllArticles()
+
         List(viewModel.newsItemsList.size) { index ->
             viewModel.onChangeArticlesListScrollPosition(index)
             // Check if you are near the end of the list and not loading more items
@@ -152,7 +159,29 @@ private fun BindNewsData(
         }
 
         items(viewModel.newsItemsList.size) {
+            //Save Article to local db
+            viewModel.insertArticle(viewModel.newsItemsList[it])
+
             ArticleItem(viewModel.newsItemsList[it]) { article ->
+                navController.currentBackStackEntry?.savedStateHandle?.set("article", article)
+                navController.navigate(HomeNavigation.Details.screen)
+            }
+        }
+    }
+}
+
+@Composable
+private fun BindSavedNewsData(
+    viewModel: HomeViewModel,
+    navController: NavController
+) {
+    LazyColumn(
+        modifier = Modifier
+            .padding(top = 8.dp)
+            .fillMaxSize()
+    ) {
+        items(viewModel.savedNewsItemsList.value.size) {
+            ArticleItem(viewModel.savedNewsItemsList.value[it]) { article ->
                 navController.currentBackStackEntry?.savedStateHandle?.set("article", article)
                 navController.navigate(HomeNavigation.Details.screen)
             }

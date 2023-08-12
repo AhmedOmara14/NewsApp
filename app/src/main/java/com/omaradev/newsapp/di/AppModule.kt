@@ -1,10 +1,13 @@
 package com.omaradev.newsapp.di
 
+import android.app.Application
+import androidx.room.Room
 import com.google.gson.Gson
 import com.omaradev.newsapp.data.remote.ApiService
 import com.omaradev.newsapp.data.repository.RepositoryImpl
 import com.omaradev.newsapp.domain.repository.Repository
 import com.omaradev.newsapp.BuildConfig
+import com.omaradev.newsapp.data.local.ArticleDB
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -50,8 +53,18 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideRepository(api: ApiService): Repository {
-        return RepositoryImpl(api)
+    fun provideRepository(api: ApiService,db: ArticleDB): Repository {
+        return RepositoryImpl(api,db)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDatabase(app: Application): ArticleDB {
+        return Room.databaseBuilder(
+            app,
+            ArticleDB::class.java,
+            ArticleDB.DATABASE_NAME
+        ).allowMainThreadQueries().build()
     }
 
 

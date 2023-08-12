@@ -1,11 +1,12 @@
 package com.omaradev.newsapp.domain.model.news
 
 import android.os.Parcelable
+import androidx.room.Entity
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 
+@Entity
 @Parcelize
 data class Source(
-    val id: String,
-    val name: String
+    val name: String?=null
 ) : Parcelable

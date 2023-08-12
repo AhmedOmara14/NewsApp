@@ -14,4 +14,8 @@ interface Repository {
         searchValue: String
     ): Flow<RemoteRequestStatus<AppApiResponse<List<Article>>>>
 
+    suspend fun insertArticle(article: Article): Flow<RemoteRequestStatus<Any>>
+    suspend fun getAllArticles(): Flow<RemoteRequestStatus<List<Article>>>
+    suspend fun deleteAllArticles():  Flow<RemoteRequestStatus<Any>>
+
 }

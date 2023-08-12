@@ -10,6 +10,8 @@ import com.omaradev.newsapp.domain.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import java.util.Locale
 import javax.inject.Inject
@@ -20,6 +22,9 @@ class HomeViewModel @Inject constructor(private val repository: Repository) : Vi
     var currentDate: String? = null
 
     var newsItemsList: ArrayList<Article> = ArrayList()
+
+    var savedNewsItemsList = mutableStateOf<List<Article>>(emptyList())
+
     val page = mutableStateOf(1)
 
     val pagesize: Int = 10
@@ -87,6 +92,37 @@ class HomeViewModel @Inject constructor(private val repository: Repository) : Vi
             }
         }
         newsItemsList.addAll(uniqueNewArticles)
+    }
+
+    fun insertArticle(article: Article) {
+        viewModelScope.launch {
+            repository.insertArticle(article).onEach {}.launchIn(viewModelScope)
+        }
+    }
+
+    fun removeAllArticles() {
+        viewModelScope.launch {
+            repository.deleteAllArticles().onEach {}.launchIn(viewModelScope)
+        }
+    }
+
+    fun getSavedArticles() {
+        viewModelScope.launch {
+            repository.getAllArticles().onEach { response ->
+                when (response) {
+                    is RemoteRequestStatus.OnSuccessRequest -> {
+                        val uniqueNewArticles = response.responseBody.filter { newArticle ->
+                            newsItemsList.none { existingArticle ->
+                                existingArticle.id == newArticle.id
+                            }
+                        }
+                        savedNewsItemsList.value = uniqueNewArticles as ArrayList<Article>
+                    }
+
+                    else -> {}
+                }
+            }.launchIn(viewModelScope)
+        }
     }
 
 }

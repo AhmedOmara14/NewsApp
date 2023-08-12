@@ -132,4 +132,7 @@ dependencies {
 
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
 
+    //Room
+    implementation 'androidx.room:room-ktx:2.4.2'
+    kapt "androidx.room:room-compiler:2.4.2"
 }
