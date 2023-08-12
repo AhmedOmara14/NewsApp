@@ -1,5 +1,6 @@
 package com.omaradev.newsapp.ui.home
 
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -96,7 +97,7 @@ class HomeViewModel @Inject constructor(private val repository: Repository) : Vi
 
     fun insertArticle(article: Article) {
         viewModelScope.launch {
-            repository.insertArticle(article).onEach {}.launchIn(viewModelScope)
+            repository.insertArticle(article)
         }
     }
 
@@ -106,23 +107,16 @@ class HomeViewModel @Inject constructor(private val repository: Repository) : Vi
         }
     }
 
-    fun getSavedArticles() {
+    fun getSavedArticles(): MutableState<List<Article>> {
         viewModelScope.launch {
-            repository.getAllArticles().onEach { response ->
-                when (response) {
-                    is RemoteRequestStatus.OnSuccessRequest -> {
-                        val uniqueNewArticles = response.responseBody.filter { newArticle ->
-                            newsItemsList.none { existingArticle ->
-                                existingArticle.id == newArticle.id
-                            }
-                        }
-                        savedNewsItemsList.value = uniqueNewArticles as ArrayList<Article>
-                    }
-
-                    else -> {}
+            val uniqueNewArticles = repository.getAllArticles().filter { newArticle ->
+                newsItemsList.none { existingArticle ->
+                    existingArticle.id == newArticle.id
                 }
-            }.launchIn(viewModelScope)
+            }
+            savedNewsItemsList.value = uniqueNewArticles as ArrayList<Article>
         }
+        return savedNewsItemsList
     }
 
 }
