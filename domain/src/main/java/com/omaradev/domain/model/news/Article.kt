@@ -13,16 +13,13 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
-@Entity(tableName = "AllNews")
 @Parcelize
 data class Article(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id")
-    var id: Int = 0,
+    var id: Int,
     val author: String? = null,
     val content: String? = null,
     val description: String? = null,
     val publishedAt: String? = null,
-    @Embedded
     val source: Source,
     val title: String? = null,
     val url: String? = null,

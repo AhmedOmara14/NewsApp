@@ -4,15 +4,15 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.omaradev.domain.model.news.Article
+import com.omaradev.data.dto.news.ArticleNetwork
 
 @Dao
 interface ArticleDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(articles: Article)
+    suspend fun insert(articles: ArticleNetwork)
 
     @Query("SELECT * FROM AllNews")
-    suspend fun getAllArticle(): List<Article>
+    suspend fun getAllArticle(): List<ArticleNetwork>
 
     @Query("DELETE FROM AllNews")
     suspend fun clearTable()
