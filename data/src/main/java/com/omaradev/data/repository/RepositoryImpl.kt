@@ -1,5 +1,8 @@
 package com.omaradev.data.repository
 
+import android.util.Log
+import com.omaradev.data.dto.AppApiResponseNetwork
+import com.omaradev.data.dto.news.ArticleNetwork
 import com.omaradev.data.dto.news.toArticle
 import com.omaradev.data.dto.news.toArticleNetwork
 import com.omaradev.data.local.ArticleDB
@@ -8,8 +11,11 @@ import com.omaradev.domain.model.AppApiResponse
 import com.omaradev.domain.model.news.Article
 import com.omaradev.domain.repository.RemoteRequestStatus
 import com.omaradev.domain.repository.Repository
+import io.ktor.client.call.body
+import io.ktor.http.isSuccess
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(val api: ApiService, private val db: ArticleDB) :
@@ -23,18 +29,17 @@ class RepositoryImpl @Inject constructor(val api: ApiService, private val db: Ar
     ): Flow<RemoteRequestStatus<AppApiResponse<List<Article>>>> {
         return flow {
             try {
-                val response = api.getAllArticlesByTitle(
+                val response = api.getAllArticles(
                     page, pageSize, language, apiKey, searchValue
-                ).apply {
-                    this.body()?.articles?.map { it.toArticle() }
-                }
-                if (response.isSuccessful) {
-                    val articleNetworkList = response.body()?.articles ?: emptyList()
-                    val articleList = articleNetworkList.map { it.toArticle() }
+                )
+                if (response.status.isSuccess()) {
+                    val responseBody = response.body<String>()
+                    val articleNetworkList = Json { ignoreUnknownKeys = true }.decodeFromString<AppApiResponseNetwork<List<ArticleNetwork>>>(responseBody)
+                    val articleList = articleNetworkList.articles?.map { it.toArticle() }
                     emit(
                         RemoteRequestStatus.OnSuccessRequest(
                             AppApiResponse(
-                                status = response.body()?.status!!,
+                                status = articleNetworkList.status,
                                 articles = articleList
                             )
                         )

@@ -10,6 +10,7 @@ buildscript {
 
         constraint_version = "1.0.1"
         coil_version = "2.4.0"
+        ktor_version = "2.3.4"
     }
 }
 // Top-level build file where you can add configuration options common to all sub-projects/modules.

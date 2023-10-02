@@ -4,9 +4,9 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.omaradev.domain.repository.RemoteRequestStatus
 import com.omaradev.domain.model.AppApiResponse
 import com.omaradev.domain.model.news.Article
+import com.omaradev.domain.repository.RemoteRequestStatus
 import com.omaradev.domain.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +18,9 @@ import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
+class HomeViewModel @Inject constructor(
+    private val repository: Repository
+) : ViewModel() {
 
     var currentDate: String? = null
 
@@ -118,5 +120,4 @@ class HomeViewModel @Inject constructor(private val repository: Repository) : Vi
         }
         return savedNewsItemsList
     }
-
 }
