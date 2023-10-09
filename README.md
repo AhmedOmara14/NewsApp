@@ -18,13 +18,18 @@
 <ul>
     <li><strong>UI:</strong> JetPack Compose </li>
   <li><strong>Language:</strong> Kotlin</li>
-  <li><strong>Networking:</strong> Retrofit</li>
+  <li><strong>Networking (Master Branch):</strong> Retrofit</li>
+  <li><strong>Networking (Ktor Client Branch):</strong> Ktor</li>
   <li><strong>Concurrency:</strong> Coroutine with Flow</li>
   <li><strong>Dependency Injection:</strong> Hilt</li>
   <li><strong>Architecture:</strong> MVVM (Model-View-ViewModel)</li>
   <li><strong>Testing:</strong> Comprehensive unit testing</li>
   <li><strong>Database:</strong> Room</li>
 </ul>
+
+**Branches:**
+- [Master Branch (Retrofit)](#) 
+- [Ktor Client Branch (Ktor)](#)
 
 <h2>Screenshots</h2>
 
@@ -33,3 +38,4 @@
 </div>
 
 <p>Experience the future of news consumption with the News App, where innovation meets information. Stay informed effortlessly.</p>
+
