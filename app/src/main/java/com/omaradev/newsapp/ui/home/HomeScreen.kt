@@ -19,7 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.omaradev.newsapp.R
 import com.omaradev.domain.model.news.Article
@@ -29,6 +28,7 @@ import com.omaradev.newsapp.ui.home.component.ArticleItem
 import com.omaradev.newsapp.ui.home.component.ArticleShimmer
 import com.omaradev.newsapp.ui.home.component.LabelText
 import com.omaradev.newsapp.ui.home.component.SearchBar
+import org.koin.androidx.compose.koinViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -37,7 +37,7 @@ import java.util.Locale
 
 @Composable
 fun HomeScreen(
-    viewModel: HomeViewModel = hiltViewModel(), navController: NavController
+    viewModel: HomeViewModel = koinViewModel(), navController: NavController
 ) {
 
     viewModel.currentDate = getFormattedDate()

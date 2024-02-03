@@ -1,18 +1,9 @@
 package com.omaradev.data.remote
 
-import com.omaradev.domain.model.AppApiResponse
-import com.omaradev.data.dto.news.ArticleNetwork
-import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Query
+import io.ktor.client.statement.HttpResponse
 
 interface ApiService {
-    @GET("everything")
-    suspend fun getAllArticlesByTitle(
-        @Query("page") page: Int,
-        @Query("pageSize") pageSize: Int,
-        @Query("language") language: String,
-        @Query("apiKey") apiKey: String,
-        @Query("q") searchValue: String
-    ): Response<AppApiResponse<List<ArticleNetwork>>>
+    suspend fun getAllArticles(
+        page: Int, pageSize: Int, language: String, apiKey: String, searchValue: String
+    ): HttpResponse
 }

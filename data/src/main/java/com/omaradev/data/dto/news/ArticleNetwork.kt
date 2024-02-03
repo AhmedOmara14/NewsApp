@@ -6,7 +6,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.omaradev.domain.model.news.Article
 import com.omaradev.domain.model.news.Source
+import kotlinx.serialization.Serializable
 
+@Serializable
 @Entity(tableName = "AllNews")
 data class ArticleNetwork(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id")
