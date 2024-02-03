@@ -21,7 +21,7 @@
   <li><strong>Networking (Master Branch):</strong> Retrofit</li>
   <li><strong>Networking (Ktor Client Branch):</strong> Ktor</li>
   <li><strong>Concurrency:</strong> Coroutine with Flow</li>
-  <li><strong>Dependency Injection:</strong> Hilt</li>
+  <li><strong>Dependency Injection:</strong> Koin</li>
   <li><strong>Architecture:</strong> MVVM (Model-View-ViewModel)</li>
   <li><strong>Testing:</strong> Comprehensive unit testing</li>
   <li><strong>Database:</strong> Room</li>
@@ -30,6 +30,8 @@
 **Branches:**
 - [Master Branch (Retrofit)](#) 
 - [Ktor Client Branch (Ktor)](#)
+- [Koin Branch (Koin)](#)
+
 
 <h2>Screenshots</h2>
 
