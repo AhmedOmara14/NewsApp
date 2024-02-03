@@ -4,9 +4,8 @@ import com.omaradev.data.BuildConfig
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
-import javax.inject.Inject
 
-class ApiServiceImpl @Inject constructor(
+class ApiServiceImpl(
     private val client: HttpClient
 ) : ApiService {
     override suspend fun getAllArticles(

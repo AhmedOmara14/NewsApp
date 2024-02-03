@@ -1,6 +1,5 @@
 package com.omaradev.data.repository
 
-import android.util.Log
 import com.omaradev.data.dto.AppApiResponseNetwork
 import com.omaradev.data.dto.news.ArticleNetwork
 import com.omaradev.data.dto.news.toArticle
@@ -16,9 +15,8 @@ import io.ktor.http.isSuccess
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.json.Json
-import javax.inject.Inject
 
-class RepositoryImpl @Inject constructor(val api: ApiService, private val db: ArticleDB) :
+class RepositoryImpl(val api: ApiService, private val db: ArticleDB) :
     Repository {
     override fun getAllArticlesByTitle(
         page: Int,
@@ -34,7 +32,9 @@ class RepositoryImpl @Inject constructor(val api: ApiService, private val db: Ar
                 )
                 if (response.status.isSuccess()) {
                     val responseBody = response.body<String>()
-                    val articleNetworkList = Json { ignoreUnknownKeys = true }.decodeFromString<AppApiResponseNetwork<List<ArticleNetwork>>>(responseBody)
+                    val articleNetworkList = Json {
+                        ignoreUnknownKeys = true
+                    }.decodeFromString<AppApiResponseNetwork<List<ArticleNetwork>>>(responseBody)
                     val articleList = articleNetworkList.articles?.map { it.toArticle() }
                     emit(
                         RemoteRequestStatus.OnSuccessRequest(

@@ -8,17 +8,19 @@ import com.omaradev.domain.model.AppApiResponse
 import com.omaradev.domain.model.news.Article
 import com.omaradev.domain.repository.RemoteRequestStatus
 import com.omaradev.domain.repository.Repository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import org.koin.dsl.module
 import java.util.Locale
-import javax.inject.Inject
 
-@HiltViewModel
-class HomeViewModel @Inject constructor(
+val ViewModelModule = module {
+    single<HomeViewModel> { HomeViewModel(get()) }
+}
+
+class HomeViewModel(
     private val repository: Repository
 ) : ViewModel() {
 

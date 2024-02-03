@@ -3,8 +3,6 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'kotlin-android'
-    id 'com.google.dagger.hilt.android'
-    id 'dagger.hilt.android.plugin'
     id 'kotlinx-serialization'
     id 'kotlin-parcelize'
 }
@@ -115,11 +113,6 @@ dependencies {
     //Coil
     implementation "io.coil-kt:coil-compose:$coil_version"
 
-    //Dagger - Hilt
-    implementation "com.google.dagger:hilt-android:$hilt_version"
-    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
-    implementation 'androidx.hilt:hilt-navigation-compose:1.1.0-alpha01'
-
     implementation "androidx.core:core-ktx:1.7.0"
 
     // Retrofit & OkHttp
@@ -139,8 +132,16 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
 
     //Room
-    implementation 'androidx.room:room-ktx:2.4.2'
-    kapt "androidx.room:room-compiler:2.4.2"
+    kapt "androidx.room:room-compiler:2.6.1"
+    implementation("androidx.room:room-ktx:2.6.1")
+
+
+    // Koin for Android
+    implementation "io.insert-koin:koin-android:3.5.3"
+    implementation "io.insert-koin:koin-core:3.5.3"
+    implementation "io.insert-koin:koin-androidx-compose:3.5.3"
+    implementation "io.insert-koin:koin-ktor:3.5.3"
+    implementation "io.insert-koin:koin-logger-slf4j:3.5.3"
 
 
 }

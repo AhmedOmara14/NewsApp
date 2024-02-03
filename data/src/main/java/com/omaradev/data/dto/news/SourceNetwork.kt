@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 @Entity
 data class SourceNetwork(
-    val name: String? = null
+    var name: String? = null
 )

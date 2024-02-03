@@ -1,5 +1,6 @@
 package com.omaradev.data.local
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -12,7 +13,7 @@ interface ArticleDao {
     suspend fun insert(articles: ArticleNetwork)
 
     @Query("SELECT * FROM AllNews")
-    suspend fun getAllArticle(): List<ArticleNetwork>
+    fun getAllArticle(): List<ArticleNetwork>
 
     @Query("DELETE FROM AllNews")
     suspend fun clearTable()
