@@ -1,0 +1,25 @@
+name: Android Build
+
+on: pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: setup JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: 11
+
+      - name: Run Tests
+        run: ./gradlew test
+
+      - name: Build Android
+        run: ./gradlew assemble
+
+
+
