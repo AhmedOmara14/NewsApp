@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        run: actions/checkout@v4
+
+      - name: Run Lint
+        run: ./gradlew lintDebug
+
+      - name: Upload Test Report
+        run: actions/upload-artifact@v4
+        with:
+          name: index.html
+          path: /home/omaradev/AndroidStudioProjects/NewsApp/app/build/reports/lint-results-productionDebug.html
