@@ -23,4 +23,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: index.html
-          path: app/build/reports/lint-results-productionDebug.html
+          path: /home/omaradev/AndroidStudioProjects/NewsApp/app/build/reports/lint-results-productionDebug.html
