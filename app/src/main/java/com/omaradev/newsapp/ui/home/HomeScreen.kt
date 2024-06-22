@@ -62,7 +62,9 @@ fun HomeScreen(
             val exception = (newsItems as RemoteRequestStatus.OnFailedRequest<*>).errorMessage
         }
 
-        else -> {}
+        is RemoteRequestStatus.OnNetworkError -> {
+            val exception = (newsItems as RemoteRequestStatus.OnNetworkError<*>).message
+        }
     }
 
     Column(

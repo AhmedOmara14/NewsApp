@@ -66,7 +66,7 @@ class RepositoryImpl(val api: ApiService, private val db: ArticleDB) :
         return db.articleDao.getAllArticle().map { it.toArticle() }
     }
 
-    override suspend fun deleteAllArticles() = flow {
+    override fun deleteAllArticles() = flow {
         try {
             db.articleDao.clearTable()
             emit(RemoteRequestStatus.OnSuccessRequest<Any>("Success"))

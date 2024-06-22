@@ -9,6 +9,7 @@ import com.omaradev.domain.model.news.Article
 import com.omaradev.domain.repository.RemoteRequestStatus
 import com.omaradev.domain.repository.Repository
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -42,7 +43,7 @@ class HomeViewModel(
         MutableStateFlow<RemoteRequestStatus<AppApiResponse<List<Article>>>>(
             RemoteRequestStatus.ToggleLoading(false)
         )
-    val articlesItems: MutableStateFlow<RemoteRequestStatus<AppApiResponse<List<Article>>>> get() = _articlesItems
+    val articlesItems: StateFlow<RemoteRequestStatus<AppApiResponse<List<Article>>>> get() = _articlesItems
 
     fun getAllArticlesByTitle(
         searchValue: String
