@@ -38,12 +38,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
 
     }
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = '17'
     }
     buildFeatures {
         compose true
@@ -68,6 +68,15 @@ android {
             dimension "news"
             buildConfigField("String", "API_URL", "\"v2/\"")
             buildConfigField("String", "BASE_URL", "\"https://newsapi.org/\"")
+        }
+    }
+
+    sonarqube {
+        properties {
+            property "sonar.projectKey", "ahmedomara14_newsApp"
+            property "sonar.organization", "ahmedomara14"
+            property "sonar.host.url", "https://sonarcloud.io"
+            property "sonar.sources", "src/main"
         }
     }
 }
