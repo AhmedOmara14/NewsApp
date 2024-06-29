@@ -1,10 +1,10 @@
 name: Android Build
 
-on: pull_request
+on: push
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout
