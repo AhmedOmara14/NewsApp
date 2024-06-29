@@ -13,7 +13,7 @@ jobs:
       - name: setup JDK
         uses: actions/setup-java@v4
         with:
-          java-version: 17
+          java-version: 11
           distribution: 'adopt'
 
       - name: Grant execute permission to Gradle wrapper
