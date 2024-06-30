@@ -5,7 +5,16 @@ plugins {
     id 'kotlin-android'
     id 'kotlinx-serialization'
     id 'kotlin-parcelize'
+    id 'org.sonarqube'
+}
 
+sonarqube {
+    properties {
+        property "sonar.projectName", "app"
+        property "sonar.sources", "src/main/java"
+        property "sonar.tests", "src/test/java"
+        property "sonar.java.binaries", "build/intermediates/classes/debug"
+    }
 }
 
 android {
