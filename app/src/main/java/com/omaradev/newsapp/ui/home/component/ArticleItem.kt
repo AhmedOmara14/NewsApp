@@ -62,7 +62,7 @@ fun ArticleItem(article: Article, onClickArticle: (serializableArticle: Article)
                     )
                     .padding(4.dp)
             ) {
-                article.source?.name?.let {
+                article.source.name?.let {
                     Text(
                         text = it,
                         style = TextStyle(

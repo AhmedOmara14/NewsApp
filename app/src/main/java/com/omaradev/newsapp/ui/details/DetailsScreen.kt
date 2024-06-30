@@ -45,7 +45,6 @@ import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.omaradev.newsapp.R
 import com.omaradev.domain.model.news.Article
-import com.omaradev.domain.model.news.Source
 import com.omaradev.newsapp.ui.home.component.LabelText
 import kotlinx.coroutines.launch
 

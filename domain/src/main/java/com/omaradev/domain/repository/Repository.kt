@@ -15,6 +15,6 @@ interface Repository {
 
     suspend fun insertArticle(article: Article)
     suspend fun getAllArticles(): List<Article>
-    suspend fun deleteAllArticles():  Flow<RemoteRequestStatus<Any>>
+    fun deleteAllArticles():  Flow<RemoteRequestStatus<Any>>
 
 }

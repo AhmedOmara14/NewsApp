@@ -29,7 +29,7 @@ class FakeRepository : Repository {
         return allSavedArticles
     }
 
-    override suspend fun deleteAllArticles(): Flow<RemoteRequestStatus<Any>> = flow {
+    override fun deleteAllArticles(): Flow<RemoteRequestStatus<Any>> = flow {
         allSavedArticles.clear()
         emit(RemoteRequestStatus.OnSuccessRequest<Any>("Success"))
     }
