@@ -39,6 +39,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: setup JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'adopt'
+
       - name: Run tests
         run: ./gradlew test
 
