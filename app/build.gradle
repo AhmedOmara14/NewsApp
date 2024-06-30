@@ -70,15 +70,6 @@ android {
             buildConfigField("String", "BASE_URL", "\"https://newsapi.org/\"")
         }
     }
-
-    sonarqube {
-        properties {
-            property "sonar.projectKey", "ahmedomara14_newsApp"
-            property "sonar.organization", "ahmedomara14"
-            property "sonar.host.url", "https://sonarcloud.io"
-            property "sonar.sources", "src/main"
-        }
-    }
 }
 
 kapt {
