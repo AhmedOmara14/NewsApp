@@ -5,7 +5,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlinx-serialization'
     id 'kotlin-parcelize'
-    id 'org.sonarqube'
+
 }
 
 android {
