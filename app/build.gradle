@@ -10,7 +10,7 @@ plugins {
 
 sonarqube {
     properties {
-        property "sonar.projectName", "app"
+        property "sonar.projectName", "ahmedomara14_newsApp"
         property "sonar.sources", "src/main/java"
         property "sonar.tests", "src/test/java"
         property "sonar.java.binaries", "build/intermediates/classes/debug"
